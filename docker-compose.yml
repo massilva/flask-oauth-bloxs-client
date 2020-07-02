@@ -1,0 +1,38 @@
+version: '3.7'
+
+volumes:
+  client-oauth: {}
+
+services:
+  client-nginx:
+    image: jwilder/nginx-proxy:alpine
+    container_name: oauth_nginx
+    restart: always
+    ports:
+      - 3000:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  client-oauth:
+    build:
+      context: .
+    container_name: client
+    restart: always
+    depends_on:
+      - client-nginx
+    volumes:
+      - .:/app
+      - /tmp/client-oauth:/tmp/client-oauth
+    environment:
+      - UWSGI_SOCKET=0.0.0.0:3000
+      - UWSGI_PYTHON_AUTO_RELOAD=1
+
+      - VIRTUAL_PROTO=uwsgi
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_HOST=localhost
+
+      - FLASK_ENV=development
+      - HOST=0.0.0.0
+      - PORT=3000
+      - DOMAIN=localhost
+      - FLASK_APP=app.py
