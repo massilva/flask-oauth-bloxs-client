@@ -34,7 +34,7 @@ requests==2.22.0
 six==1.14.0
 SQLAlchemy==1.3.17
 tinycss2==1.0.2
-urllib3==1.25.8
+urllib3==1.26.5
 uWSGI==2.0.18
 validate-docbr==1.6.1
 WeasyPrint==47
