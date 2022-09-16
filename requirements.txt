@@ -24,7 +24,7 @@ html5lib==1.0.1
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.11.2
-Mako==1.1.2
+Mako==1.2.2
 MarkupSafe==1.1.1
 pycparser==2.17
 Pyphen==0.9.5
